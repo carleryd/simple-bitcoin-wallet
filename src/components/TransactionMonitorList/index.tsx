@@ -87,7 +87,15 @@ export const TransactionsMonitor = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Transaction id</TableCell>
+              <TableCell
+                sx={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                Tx id
+              </TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Explorer</TableCell>
             </TableRow>

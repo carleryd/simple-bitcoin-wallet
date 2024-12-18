@@ -8,7 +8,13 @@ export const PaymentActions = ({
   onClickCopyLink,
   onClickViewStatus,
 }: Props) => (
-  <Grid container justifyContent="space-around" width="100%" paddingTop={0.5}>
+  <Grid
+    container
+    justifyContent="space-around"
+    width="100%"
+    paddingTop={0.5}
+    spacing={1}
+  >
     <Grid>
       <Button
         color="primary"

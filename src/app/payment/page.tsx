@@ -125,6 +125,7 @@ export default function PaymentPage() {
             src={qrCodeSrc}
             width={256}
             height={256}
+            style={{ maxWidth: "100%", height: "auto" }}
           />
         </Grid>
       )}
