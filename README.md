@@ -80,6 +80,9 @@ Currently the wallet can only receive payments, a proper wallet should obviously
 Some of the technical improvements that could be made are:
 
 - Explore whether the fetching of incoming transactions can be simpler. It may be overkill to fetch both transactions at the wallet as well as the status of these individual transactions.
+- Improve error handling
+  - There is good error handling for fetching transaction statuses using RemoteData, but this is not in place for the fetching of address transactions. This is just lazy and needs fixing.
+  - Error handling and testing of the BIP32 and BIP39 logic is also missing.
 - Better handling of incoming transactions. Statuses for incoming transactions are fetched from the [Blockstream API](https://blockstream.info/), however no effort is done to check whether a transaction is only broadcasted to the network (i.e. unconfirmed) or whether it has been included in a block (and importantly how many blocks). This means:
   - The user must check the transaction status manually.
   - Transactions could fail to reach the network, and in such a case there is no retry logic in place to try to find it again.
