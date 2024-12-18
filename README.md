@@ -68,6 +68,7 @@ Currently the wallet can only receive payments, a proper wallet should obviously
 
 #### Smaller improvements
 
+- UI works on desktop and mobile, but the latter could use some improvements
 - Displaying balance
 - Importing wallet using seed phrase
 - Access to more than one receiving address as well as monitoring on all wallet addresses
