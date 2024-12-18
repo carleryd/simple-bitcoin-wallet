@@ -31,7 +31,6 @@ export async function getAddressTxs(
   address: string,
 ): Promise<BlockStreamAddressTxsResponse> {
   const url = `https://blockstream.info/testnet/api/address/${address}/txs`;
-  console.log("Fetching address transactions:", url);
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -57,7 +56,6 @@ export async function getTxStatus(
   txHash: string,
 ): Promise<BlockStreamTxStatusResponse> {
   const url = `https://blockstream.info/testnet/api/tx/${txHash}/status`;
-  console.log("Fetching transaction status:", url);
   const response = await fetch(url);
 
   if (!response.ok) {

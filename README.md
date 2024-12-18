@@ -1,8 +1,8 @@
 ## About
 
-This project is a simple Bitcoin HD wallet built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/), [MaterialUI](https://mui.com/material-ui/) and other smaller libraries such as [zod](https://zod.dev/) for validating request payloads.
+This project is a simple Bitcoin HD wallet built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/), [MaterialUI](https://mui.com/material-ui/) and [zod](https://zod.dev/) for validating request payloads.
 
-The wallet utilises Bitcoin libraries [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) as well as libraries for the two Bitcoin Improvement Proposals (BIP) [bip39](https://github.com/bitcoinjs/bip39) for generating mnemonic phrases and addresses and [bip32](https://github.com/bitcoinjs/bip32) for deriving keys from the mnemonic phrases.
+The wallet utilises the Bitcoin library [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) as well as implementations for the two Bitcoin Improvement Proposals (BIP) [bip39](https://github.com/bitcoinjs/bip39) for generating mnemonic phrases and addresses and [bip32](https://github.com/bitcoinjs/bip32) for deriving keys from the mnemonic phrases.
 
 The future of this project is very unclear, but below are some improvements which should be made if it were to be developed further.
 
@@ -16,11 +16,23 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-From there on the application should be pretty straight forward.
+## How it works
+
+When entering the website, the user is prompted to create a new Bitcoin wallet. Once created, the user is directed to the wallet page where wallet information as well as incoming payments are displayed.
+
+### Payment links
+
+The user is able to generate payment links as QR codes which can be shared with others by copying the URL. This works without persistence because the URL contain query parameters for the wallet address and amount which are required for the Bitcoin URI QR code.
+
+### Monitoring incoming payments
+
+As the wallet is an HD wallet, it technically supports multiple receiving wallets, but for simplicity only one is exposed for sharing. Furthermore, only incoming transactions on this address are monitored on the wallet page.
+
+There is polling in place for transactions made on this address, as well as polling of the current status of these transactions. If you have been paid on your receiving address, it should show up below "Incoming Transactions" once the transaction has been broadcasted to the Bitcoin Testnet network.
 
 ## Testing
 
-Coming from the Cardano ecosystem, I was quite surprised by how difficult it was to get access to Testnet Bitcoin (tBTC) tokens. I've explored many faucet and found these to be the most reliable ones:
+Coming from the Cardano ecosystem, I was quite surprised by how difficult it was to get access to Testnet Bitcoin (tBTC) tokens. I've explored many faucets and found these to be the most reliable ones:
 
 - https://bitcoinfaucet.uo1.net/send.php
 - https://testnet.help/en/btcfaucet/testnet#log
@@ -54,7 +66,7 @@ Currently the wallet can only receive payments, a proper wallet should obviously
 
 - Displaying balance
 - Importing wallet using seed phrase
-- Access to more than one receiving address
+- Access to more than one receiving address as well as monitoring on all wallet addresses
 - Mainnet support
 - Don't make it so easy to view the seed phrase
 - Support dark mode, which will probably require Theme to be a bit more structured
@@ -63,6 +75,7 @@ Currently the wallet can only receive payments, a proper wallet should obviously
 
 Some of the technical improvements that could be made are:
 
+- Explore whether the fetching of incoming transactions can be simpler. It may be overkill to fetch both transactions at the wallet as well as the status of these individual transactions.
 - Better handling of incoming transactions. Statuses for incoming transactions are fetched from the [Blockstream API](https://blockstream.info/), however no effort is done to check whether a transaction is only broadcasted to the network (i.e. unconfirmed) or whether it has been included in a block (and importantly how many blocks). This means:
   - The user must check the transaction status manually.
   - Transactions could fail to reach the network, and in such a case there is no retry logic in place to try to find it again.
