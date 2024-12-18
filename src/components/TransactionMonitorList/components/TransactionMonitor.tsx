@@ -86,7 +86,10 @@ export const TransactionMonitor = ({ txId }: { txId: string }) => {
     <TableRow>
       <TableCell
         sx={{
-          maxWidth: 200,
+          maxWidth: {
+            xs: 40,
+            md: 200,
+          },
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis",
