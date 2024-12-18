@@ -64,7 +64,7 @@ export const TransactionsMonitor = () => {
       <Grid container justifyContent="space-between" alignItems="center">
         <Grid container>
           <Grid>
-            <Typography variant="h4">Incoming Transactions</Typography>
+            <Typography variant="h4">Incoming Payments</Typography>
           </Grid>
           <Grid>
             <Tooltip title="Transactions associated with your wallet address are fetched periodically. Incoming transactions will be displayed below as they are discovered on-chain.">
