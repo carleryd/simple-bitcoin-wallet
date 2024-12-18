@@ -1,3 +1,7 @@
+## Try the App
+
+[Simple Bitcoin Wallet hosted on Vercel](https://simple-bitcoin-wallet.vercel.app/onboarding)
+
 ## About
 
 This project is a simple Bitcoin HD wallet built with [Next.js](https://nextjs.org), [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/), [MaterialUI](https://mui.com/material-ui/) and [zod](https://zod.dev/) for validating request payloads.

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { getAddressTxs } from "@/app/actions";
 import { useWalletState } from "@/context/WalletState";
@@ -25,25 +25,39 @@ export const TransactionsMonitor = () => {
   const { paymentAddress } = useWalletState();
   const [txIdsToMonitor, setTxIdsToMonitor] = useState<string[]>([]);
   const [isFetchingAddressTxs, setIsFetchingAddressTxs] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
+  const fetchAddressTxs = useCallback(async () => {
     if (paymentAddress) {
-      console.log(
-        "Checking for transactions on paymentAddress:",
-        paymentAddress,
-      );
+      setIsFetchingAddressTxs(true);
 
-      setInterval(() => {
-        setIsFetchingAddressTxs(true);
-        getAddressTxs(paymentAddress).then((responses) => {
-          const txIds = responses.map((x) => x.txid);
+      const txs = await getAddressTxs(paymentAddress);
+      const txIds = txs.map((x) => x.txid);
 
-          setIsFetchingAddressTxs(false);
-          setTxIdsToMonitor(txIds);
-        });
-      }, ADDRESS_TXS_POLLING_INTERVAL);
+      setIsFetchingAddressTxs(false);
+      setTxIdsToMonitor(txIds);
     }
   }, [paymentAddress]);
+
+  /**
+   * Fetch transactions immediately on mount, and then start polling.
+   */
+  useEffect(() => {
+    fetchAddressTxs();
+
+    intervalRef.current = setInterval(() => {
+      fetchAddressTxs();
+    }, ADDRESS_TXS_POLLING_INTERVAL);
+  }, [paymentAddress, fetchAddressTxs]);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   return (
     <Box>
