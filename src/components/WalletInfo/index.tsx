@@ -59,7 +59,13 @@ export const WalletInfo = () => {
           <Typography
             variant="body1"
             onClick={onClickAddress}
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+              maxWidth: 200,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
           >
             {paymentAddress}
           </Typography>
