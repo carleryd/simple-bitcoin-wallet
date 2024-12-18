@@ -41,9 +41,9 @@ Coming from the Cardano ecosystem, I was quite surprised by how difficult it was
 - https://bitcoinfaucet.uo1.net/send.php
 - https://testnet.help/en/btcfaucet/testnet#log
 
-However, neither give close to enough tBTC to perform transactions. Currently the Testnet require ~5,000 sats in transaction fee, and these faucet give out ~500 per hour. So the only feasible way I found to test was to enter the receiving address of the generated wallet address into the faucet and wait for the faucet to make the transaction.
+However, neither give close to enough tBTC to perform transactions. So the only feasible way I found to test was to enter the receiving address of the generated wallet address into the faucet and wait for the faucet to make the transaction.
 
-You could attempt to run a node, however don't expect to get any rewards unless you have the correct hardware and configuration (I tried myself). Perhaps there are other ways, but it's clearly an issue in the ecosystem right now.
+You could attempt to run mine some tBTC, however don't expect to get any rewards unless you have the correct hardware and configuration (I tried myself). Perhaps there are other ways, but it's clearly an issue in the ecosystem right now.
 
 ## Major caveats
 
