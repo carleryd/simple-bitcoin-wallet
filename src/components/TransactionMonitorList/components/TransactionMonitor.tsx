@@ -88,6 +88,7 @@ export const TransactionMonitor = ({ txId }: { txId: string }) => {
         sx={{
           maxWidth: {
             xs: 40,
+            sm: 60,
             md: 200,
           },
           whiteSpace: "nowrap",

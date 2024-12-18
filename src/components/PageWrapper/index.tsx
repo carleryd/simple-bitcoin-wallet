@@ -16,7 +16,11 @@ export const PageWrapper = ({ children }: Props) => (
     <Container maxWidth="lg">
       <Grid
         container
-        padding={4}
+        padding={{
+          xs: "none",
+          sm: 2,
+          md: 4,
+        }}
         spacing={5}
         direction="column"
         alignItems="center"
