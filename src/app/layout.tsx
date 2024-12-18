@@ -8,6 +8,7 @@ import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import { PageWrapper } from "@/components/PageWrapper";
+import { GlobalStyles } from "@mui/material";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -33,6 +34,12 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <GlobalStyles
+              styles={{
+                html: { height: "100%" },
+                body: { height: "100%" },
+              }}
+            />
             <WalletStateProvider>
               <PageWrapper>{children}</PageWrapper>
             </WalletStateProvider>
