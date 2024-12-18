@@ -17,7 +17,7 @@ export const PageWrapper = ({ children }: Props) => (
       <Grid
         container
         padding={{
-          xs: "none",
+          xs: 1,
           sm: 2,
           md: 4,
         }}
